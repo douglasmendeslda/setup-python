@@ -1,0 +1,31 @@
+name: 'Python Setup Action'
+description: 'Set up Python environment and export success status.'
+
+inputs:
+  python-version:
+    description: 'Version of Python to be set up'
+    required: true
+    default: '3.x'
+
+outputs:
+  setup-success:
+    description: 'Indicates whether the setup was successful'
+    value: ${{ steps.export-status.outputs.success }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+    
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run custom setup script
+      run: bash ./scripts/setup-python.sh
+    
+    - name: Export setup success status
+      id: export-status
+      run: echo "success=true" >> $GITHUB_ENV
