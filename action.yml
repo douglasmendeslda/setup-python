@@ -11,6 +11,9 @@ outputs:
   setup-success:
     description: 'Indicates whether the setup was successful'
     value: ${{ steps.export-status.outputs.success }}
+  setup-message:
+    description: 'Message indicating the completion of the setup'
+    value: "Python setup completed successfully!"
 
 runs:
   using: "composite"
