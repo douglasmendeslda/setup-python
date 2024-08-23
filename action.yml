@@ -28,7 +28,7 @@ runs:
       shell: bash
 
     - name: Run custom setup script
-      run: bash ./scripts/setup-python.sh
+      run: bash ${GITHUB_ACTION_PATH}/scripts/setup-python.sh
       shell: bash
     
     - name: Export setup success status
