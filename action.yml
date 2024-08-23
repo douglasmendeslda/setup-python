@@ -25,10 +25,13 @@ runs:
     
     - name: Install dependencies
       run: pip install -r requirements.txt
+      hell: bash
 
     - name: Run custom setup script
       run: bash ./scripts/setup-python.sh
+      shell: bash
     
     - name: Export setup success status
       id: export-status
       run: echo "success=true" >> $GITHUB_ENV
+      shell: bash
